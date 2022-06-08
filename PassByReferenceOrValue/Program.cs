@@ -39,18 +39,39 @@ Console.WriteLine(a.GetHashCode());
 Console.WriteLine(b.GetHashCode());
 Switch(a, b, out c, out d);
 Console.WriteLine($"After Switch func");
+Console.WriteLine(a.GetHashCode());
+Console.WriteLine(b.GetHashCode());
 Console.WriteLine(c.GetHashCode());
 Console.WriteLine(d.GetHashCode());
+Console.WriteLine();
+Console.WriteLine(a.GetHashCode());
+Console.WriteLine("After Ref");
+RecreateRef(ref a);
+Console.WriteLine(a.GetHashCode());
+RecreateOut(out a);
+Console.WriteLine("After Out");
+Console.WriteLine(a.GetHashCode());
 
-void Switch(Dog x, Dog y, out Dog a, out Dog b)
+
+void Switch(Dog a, Dog b, out Dog c, out Dog d)
 {
-    Console.WriteLine($"Hash code of first Dog is {x.GetHashCode()} and second Dog is {y.GetHashCode()}");
-    x = y;
+    Console.WriteLine($"Hash code of first Dog is {a.GetHashCode()} and second Dog is {b.GetHashCode()}");
+    a = b;
 
-    a = x;
-    b = y;
+    c = a;
+    d = b;
     Console.WriteLine("After assignment of first to second dog");
-    Console.WriteLine($"Hash code of first Dog is {x.GetHashCode()} and second Dog is {y.GetHashCode()}");
+    Console.WriteLine($"Hash code of first Dog is {a.GetHashCode()} and second Dog is {b.GetHashCode()}");
+}
+
+
+void RecreateRef(ref Dog a)
+{
+    a = new Dog();
+}
+void RecreateOut(out Dog a)
+{
+    a = new Dog();
 }
 
 
